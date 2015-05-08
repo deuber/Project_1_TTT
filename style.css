@@ -1,0 +1,17 @@
+#game td {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    font-size: 170
+}
+.X {
+  background-color: red;
+}
+.O {
+  background-color: blue;
+}
+.medium-size {
+    width: 645px;
+    height:40px;
+    background-color: red;
+}
