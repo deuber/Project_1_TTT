@@ -5,10 +5,11 @@
 $(function () {
   // Create a Game class,  an object constructor
   function Game() {
+
   }
   // Create a Board class,  an object constructor
   function Board() {
-       var $boxes = $(".box")
+      var $boxes = $(".box")
 
   } 
 
@@ -27,16 +28,6 @@ $(function () {
     var current = document.getElementById("sum" + this.player);
     current.value += this.player
     }
-  };
-
-  // Add a shared property to reset all boxes 
-  Game.prototype.resetBoxes = function() {
-  var boxToClear = $(".box")
-      console.log(boxToClear);
-      boxToClear.each(function(index) {
-          $(this).html('');
-          $(this).removeClass();
-      })
   };
 
 
@@ -62,7 +53,7 @@ $(function () {
         }
         // Set X or Y and check for winner
         else { 
-          var player = game.nextPlayer();
+          var $player = game.nextPlayer();
           $(this).html(game.player);
           $(this).addClass(game.player);
           game.addWins();
@@ -70,6 +61,13 @@ $(function () {
     })
   })
 
+  // Add a shared property to reset all boxes 
+  Game.prototype.resetBoxes = function() {
+      $boxes.each(function(index) {
+          $(this).html('');
+          $(this).removeClass();
+      })
+  };
 
   // Add a shared property clearBoard to BOARD object
   // Clears the board when run
@@ -90,8 +88,8 @@ $(function () {
         $boxes.eq(0).addClass("win");
         $boxes.eq(1).addClass("win");
         $boxes.eq(2).addClass("win");
-        alert("Winner is " + player )
-        game.resetBoxes().delay( 800 );
+        alert("Winner is " + this.player )
+        game.resetBoxes();
         return this.player;
 
     }else if ($boxes.eq(3).html() ===  this.player &&
@@ -162,9 +160,9 @@ $(function () {
     }else if ($boxes.eq(2).html() ===  this.player &&
         $boxes.eq(4).html() ===  this.player &&
         $boxes.eq(6).html() ===  this.player){
-        $boxes.eq(0).addClass("win");
+        $boxes.eq(2).addClass("win");
         $boxes.eq(4).addClass("win");
-        $boxes.eq(8).addClass("win");
+        $boxes.eq(6).addClass("win");
         alert("Winner is " + this.player )
         game.resetBoxes();
         return this.player;
