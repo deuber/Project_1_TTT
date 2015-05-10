@@ -1,17 +1,22 @@
 #game td {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     text-align: center;
-    font-size: 170
+    font-size: 120
 }
-.X {
-  background-color: red;
-}
-.O {
-  background-color: blue;
-}
+.X {background-color: grey}
+.O {background-color: grey}
+.win { background-color: red }
+
 .medium-size {
-    width: 645px;
+    width: 495px;
     height:40px;
-    background-color: red;
+    background-color: grey;
+    font-size: 20px;
+}
+.form{
+    width: 248px;
+    height:40px;
+    background-color: grey;
+    font-size: 30px;
 }
