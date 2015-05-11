@@ -28,6 +28,8 @@ $(function () {
     var current = document.getElementById("sum" + this.player);
     current.value += this.player
     }
+  game.endGame()
+
   };
 
 
@@ -36,8 +38,6 @@ $(function () {
   var board = new Board(); //Creates an instance of the Game object
   board.attachListeners(); //Create event listener
   board.clearBoard(); //Clear board when 'clear' button is clicked
-
-
   };
 
   // Add a shared property init to BOARD object
@@ -68,12 +68,21 @@ $(function () {
           $(this).removeClass();
       })
   };
+  // Add a shared property to reset all boxes 
+  Game.prototype.endGame = function() {
+    var valueX = document.getElementById("sumX").value;
+    var valueO = document.getElementById("sumO").value;
+    if (valueX.length > 12){
+      alert("Player " + this.player + " is first to 5!")
+      location.reload();    
+    }
+  };
 
   // Add a shared property clearBoard to BOARD object
   // Clears the board when run
   Board.prototype.clearBoard = function() {
     var $boxes = $(".box")
-    var $button = $("#clear"); 
+    var $button = $("#clear");
     $button.on( "click", function() {
     $boxes.each(function(index) {
           $(this).html('');
@@ -91,7 +100,6 @@ $(function () {
         alert("Winner is " + this.player )
         game.resetBoxes();
         return this.player;
-
     }else if ($boxes.eq(3).html() ===  this.player &&
         $boxes.eq(4).html() ===  this.player &&
         $boxes.eq(5).html() ===  this.player){
@@ -101,7 +109,6 @@ $(function () {
         alert("Winner is " + this.player )
         game.resetBoxes();
         return this.player;
-
     }else if ($boxes.eq(6).html() ===  this.player &&
         $boxes.eq(7).html() ===  this.player &&
         $boxes.eq(8).html() ===  this.player){
@@ -111,7 +118,6 @@ $(function () {
         alert("Winner is " + this.player )
         game.resetBoxes();
         return this.player;       
-
     // X Vert win
     }else if ($boxes.eq(0).html() ===  this.player &&
         $boxes.eq(3).html() ===  this.player &&
@@ -122,7 +128,6 @@ $(function () {
         alert("Winner is " + this.player )
         game.resetBoxes();
         return this.player;
-
     }else if ($boxes.eq(1).html() ===  this.player &&
         $boxes.eq(4).html() ===  this.player &&
         $boxes.eq(7).html() ===  this.player){
@@ -132,7 +137,6 @@ $(function () {
         alert("Winner is " + this.player )
         game.resetBoxes();
         return this.player;
-
     }else if ($boxes.eq(2).html() ===  this.player &&
         $boxes.eq(5).html() ===  this.player &&
         $boxes.eq(8).html() ===  this.player){
@@ -141,9 +145,7 @@ $(function () {
         $boxes.eq(8).addClass("win");
         alert("Winner is " + this.player )
         game.resetBoxes();
-        return this.player;
-
-
+        return this.player
     }
         // diagonal 
     else  if ($boxes.eq(0).html() ===  this.player &&
@@ -155,8 +157,6 @@ $(function () {
         alert("Winner is " + this.player )
         game.resetBoxes();
         return this.player;
-
-
     }else if ($boxes.eq(2).html() ===  this.player &&
         $boxes.eq(4).html() ===  this.player &&
         $boxes.eq(6).html() ===  this.player){
